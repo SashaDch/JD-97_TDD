@@ -54,4 +54,20 @@ public class PhoneBookTest {
         int res = book.add("John Smith", "+11234567891");
         assertThat(res).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("Поиск по несуществующему номеру")
+    public void findByNumber_notContainedNumber_returnsNull() {
+        String res = book.findByNumber("+11234567890");
+        assertThat(res).isNull();
+    }
+
+    @Test
+    @DisplayName("Поиск по несуществующему номеру")
+    public void findByNumber_containedNumber_returnsName() {
+        book.add("John Smith", "+11234567890");
+        String res = book.findByNumber("+11234567890");
+        assertThat(res).isEqualTo("John Smith");
+    }
+
 }

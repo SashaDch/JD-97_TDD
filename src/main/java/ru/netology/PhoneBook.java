@@ -10,4 +10,8 @@ public class PhoneBook {
         names.add(name);
         return names.size();
     }
+
+    String findByNumber(String phoneNumber) {
+        return null;
+    }
 }
