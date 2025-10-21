@@ -2,9 +2,11 @@ package ru.netology;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class PhoneBook {
-    Map<String, String> names = new HashMap<>();
+    SortedMap<String, String> names = new TreeMap<>();
     Map<String, String> numbers = new HashMap<>();
 
     public int add(String name, String phoneNumber) {
@@ -26,5 +28,8 @@ public class PhoneBook {
     }
 
     public void printAllNames() {
+        for(String name : names.keySet()) {
+            System.out.println(name);
+        }
     }
 }
