@@ -2,6 +2,7 @@ package ru.netology;
 
 import org.junit.jupiter.api.*;
 import static org.assertj.core.api.Assertions.*;
+import static com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemOut;
 
 public class PhoneBookTest {
     private static long suiteStartTime;
@@ -84,6 +85,27 @@ public class PhoneBookTest {
         book.add("John Smith", "+11234567890");
         String res = book.findByName("John Smith");
         assertThat(res).isEqualTo("+11234567890");
+    }
+
+    @Test
+    @DisplayName("Вывод имен в пустой книге")
+    void printAllNames_null_printed() throws Exception {
+        String out = tapSystemOut(() -> book.printAllNames()); // перехват вывода во время вызова
+        assertThat(out).isEqualTo("");
+    }
+
+    @Test
+    @DisplayName("Вывод имен в непустой книге")
+    void printAllNames_notNull_printed() throws Exception {
+        book.add("John A", "+11234567890");
+        book.add("John C", "+11234567890");
+        book.add("John B", "+11234567890");
+        book.add("John A", "+11234567891");
+        String out = tapSystemOut(book::printAllNames); // перехват вывода во время вызова
+        assertThat(out).isEqualTo(
+                "John A" + System.lineSeparator() +
+                "John B" + System.lineSeparator() +
+                "John C" + System.lineSeparator());
     }
 
 }

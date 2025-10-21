@@ -7,7 +7,7 @@ public class PhoneBook {
     Map<String, String> names = new HashMap<>();
     Map<String, String> numbers = new HashMap<>();
 
-    int add(String name, String phoneNumber) {
+    public int add(String name, String phoneNumber) {
         if (name == null || phoneNumber == null) {
             throw new NullPointerException("Name and number must be not-null!");
         }
@@ -17,11 +17,14 @@ public class PhoneBook {
         return names.size();
     }
 
-    String findByNumber(String phoneNumber) {
+    public String findByNumber(String phoneNumber) {
         return numbers.get(phoneNumber);
     }
 
-    String findByName(String name) {
+    public String findByName(String name) {
         return names.get(name);
+    }
+
+    public void printAllNames() {
     }
 }
