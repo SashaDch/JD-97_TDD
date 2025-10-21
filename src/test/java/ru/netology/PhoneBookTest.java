@@ -63,11 +63,27 @@ public class PhoneBookTest {
     }
 
     @Test
-    @DisplayName("Поиск по несуществующему номеру")
-    public void findByNumber_containedNumber_returnsName() {
+    @DisplayName("Поиск по существующему номеру")
+    public void findByNumber_containedNumber_returnsLastName() {
+        book.add("John Doe", "+11234567890");
         book.add("John Smith", "+11234567890");
         String res = book.findByNumber("+11234567890");
         assertThat(res).isEqualTo("John Smith");
+    }
+
+    @Test
+    @DisplayName("Поиск по несуществующему имени")
+    public void findByName_notContainedName_returnsNull() {
+        String res = book.findByName("John Doe");
+        assertThat(res).isNull();
+    }
+
+    @Test
+    @DisplayName("Поиск по существующему имени")
+    public void findByName_containedName_returnsNumber() {
+        book.add("John Smith", "+11234567890");
+        String res = book.findByName("John Smith");
+        assertThat(res).isEqualTo("+11234567890");
     }
 
 }
